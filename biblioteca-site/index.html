@@ -1,0 +1,129 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha Biblioteca</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eaf2f8;
+            margin: 0;
+            padding: 30px;
+        }
+
+        .container {
+            background-color: white;
+            max-width: 500px;
+            margin: auto;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 3px 10px #aaa;
+        }
+
+        h1 {
+            text-align: center;
+            color: #24527a;
+        }
+
+        input {
+            width: 95%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #aaa;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #24527a;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #163752;
+        }
+
+        li {
+            background-color: #eaf2f8;
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>📚 Minha Biblioteca</h1>
+
+        <h3>Cadastro de livros</h3>
+
+        <input
+            type="text"
+            id="nome"
+            placeholder="Nome do livro"
+        >
+
+        <input
+            type="text"
+            id="categoria"
+            placeholder="Categoria do livro"
+        >
+
+        <button onclick="adicionarLivro()">
+            Adicionar
+        </button>
+
+        <h3>Livros cadastrados:</h3>
+
+        <ul id="lista"></ul>
+    </div>
+
+    <script>
+        // Vetor para armazenar os livros
+        let livros = [];
+
+        function adicionarLivro() {
+            let nome = document.getElementById("nome").value;
+            let categoria = document.getElementById("categoria").value;
+
+            if (nome === "" || categoria === "") {
+                alert("Preencha todos os campos!");
+                return;
+            }
+
+            // Adiciona o livro ao vetor
+            livros.push({
+                nome: nome,
+                categoria: categoria
+            });
+
+            // Atualiza a lista na tela
+            let lista = document.getElementById("lista");
+            lista.innerHTML = "";
+
+            livros.forEach(function(livro) {
+                let item = document.createElement("li");
+                item.textContent =
+                    livro.nome + " - " + livro.categoria;
+
+                lista.appendChild(item);
+            });
+
+            // Limpa os campos
+            document.getElementById("nome").value = "";
+            document.getElementById("categoria").value = "";
+        }
+    </script>
+
+</body>
+</html>
